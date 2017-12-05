@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements iPermissionManage
         ListView listOfCinema = (ListView) findViewById(R.id.listOfCinema);
         db = new DatabaseHandler(this);
 
-       // db.onUpgrade(db.getWritableDatabase(),1,1);  //force to recreate database
+       db.onUpgrade(db.getWritableDatabase(),1,1);  //force to recreate database
 
         cinemas = db.getAllCinemas();
         adapter = getMyArrayAdapter();

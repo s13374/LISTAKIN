@@ -8,12 +8,9 @@
 /captures
 .externalNativeBuild
 /app/src/main/res/layout
-/app/src/main/res/layout-large
-/app/src/main/res/layout-land
-/app/src/main/res/layout-port
-/app/src/main/java/com/example/marker/kinawmiescie/cinemaFragments
+
 /app/src/main/java/com/example/marker/kinawmiescie/enums
 /app/src/main/java/com/example/marker/kinawmiescie/location
-/app/src/main/java/com/example/marker/kinawmiescie/cinemaFragments
+
 /app/src/main/java/com/example/marker/kinawmiescie/CinemaActivity.java
 /app/src/main/java/com/example/marker/kinawmiescie/CinemaFormActivity.java

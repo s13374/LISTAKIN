@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lista Kin</string>
+    <string name="app_name">Kino do którego warto się wybrać</string>
     <string name="description">Opis:</string>
     <string name="name">Nazwa:</string>
     <string name="location">Lokalizacja:</string>
