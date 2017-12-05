@@ -1,19 +1,15 @@
 package com.example.marker.kinawmiescie;
 
-import android.Manifest;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.marker.kinawmiescie.cinemaFragments.CinemaDetails;
 import com.example.marker.kinawmiescie.cinemaFragments.CinemaMap;
 import com.example.marker.kinawmiescie.cinemaFragments.iFragmentChange;
 import com.example.marker.kinawmiescie.models.Cinema;
-//import com.example.marker.kinawmiescie.permission.PermissionManager;
 
 
 public class CinemaActivity extends AppCompatActivity implements iFragmentChange{
@@ -46,11 +42,9 @@ public class CinemaActivity extends AppCompatActivity implements iFragmentChange
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_placeholder, cinemaDetails, "details").commit();
 
-//        if(PermissionManager.hasPermissionTo(this, Manifest.permission.ACCESS_FINE_LOCATION)){
             canDisplayMap = true;
             if((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE)
             showMapFragment();
-//        }
 
     }
 
@@ -71,19 +65,4 @@ public class CinemaActivity extends AppCompatActivity implements iFragmentChange
             fragmentManager.beginTransaction().add(R.id.fragment_map, cinemaMap, "map").commit();
         }
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if(grantResults[0] == 0) {
-//            canDisplayMap = true;
-//            showMapFragment();
-//        }else {
-//            Toast.makeText(this, getText(R.string.location_permission_disable) + " "
-//                    + getText(R.string.unable_to_show_map) + " "
-//                    +getText(R.string.enable_location_permission), Toast.LENGTH_LONG).show();
-//
-//        }
-//    }
-
 }

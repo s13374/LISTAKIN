@@ -1,8 +1,8 @@
 package com.example.marker.kinawmiescie;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,12 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.marker.kinawmiescie.models.Cinema;
-import com.example.marker.kinawmiescie.permission.*;
 
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements iPermissionManager, AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private List<Cinema> cinemas;
     private ArrayAdapter<Cinema> adapter;
@@ -35,14 +34,10 @@ public class MainActivity extends AppCompatActivity implements iPermissionManage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!PermissionManager.hasPermissionTo(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-            PermissionManager.makeRequest(this, Manifest.permission.ACCESS_FINE_LOCATION, 1);
-        }
-
         ListView listOfCinema = (ListView) findViewById(R.id.listOfCinema);
         db = new DatabaseHandler(this);
 
-       db.onUpgrade(db.getWritableDatabase(),1,1);  //force to recreate database
+//       db.onUpgrade(db.getWritableDatabase(),1,1);  //force to recreate database
 
         cinemas = db.getAllCinemas();
         adapter = getMyArrayAdapter();
@@ -102,8 +97,11 @@ public class MainActivity extends AppCompatActivity implements iPermissionManage
                 View view = super.getView(position, convertView, parent);
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                int MAX_LEN = 70;
+                int MAX_LEN;
+                if((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE)
+                    MAX_LEN = 120;
+                else
+                    MAX_LEN = 70;
                 String desc = cinemas.get(position).getDescription();
 
                 if(desc.length() > MAX_LEN)
@@ -119,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements iPermissionManage
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("My Context Menu");
+        menu.setHeaderTitle("Edycja Kina");
         menu.add(Menu.NONE, CONTEXT_MENU_EDIT, Menu.NONE, "Edit");
         menu.add(Menu.NONE, CONTEXT_MENU_DELETE, Menu.NONE, "Delete");
     }

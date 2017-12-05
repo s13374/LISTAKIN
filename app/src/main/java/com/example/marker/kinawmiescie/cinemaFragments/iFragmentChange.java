@@ -5,5 +5,5 @@ package com.example.marker.kinawmiescie.cinemaFragments;
  */
 
 public interface iFragmentChange {
-    public void showMapFragment();
+    void showMapFragment();
 }
